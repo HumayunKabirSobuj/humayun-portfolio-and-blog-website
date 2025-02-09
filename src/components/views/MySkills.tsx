@@ -81,9 +81,10 @@ const MySkills = () => {
                   data-aos="fade-up"
                 >
                   <div className="absolute left-0 top-0 w-px h-full bg-white" />
-                  <div className="absolute left-[-15px] top-0 w-[30px] h-[30px] bg-[#212121] rounded-full flex items-center justify-center">
+                  <div className="absolute left-[-15px] top-0 w-[30px] h-[30px]  flex items-center justify-center">
                     <Image
                       src={`https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/${item.icon}`}
+                      className="rounded-full"
                       alt={item.title}
                       width={20}
                       height={20}
@@ -164,9 +165,10 @@ const MySkills = () => {
                   data-aos="fade-up"
                 >
                   <div className="absolute left-0 top-0 w-px h-full bg-white" />
-                  <div className="absolute left-[-15px] top-0 w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center">
+                  <div className="absolute left-[-15px] top-0 w-[30px] h-[30px]  flex items-center justify-center">
                     <Image
                       src={`https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/${item.icon}`}
+                      className="rounded-full"
                       alt={item.title}
                       width={20}
                       height={20}
@@ -239,9 +241,10 @@ const MySkills = () => {
                   data-aos="fade-up"
                 >
                   <div className="absolute left-0 top-0 w-px h-full bg-white" />
-                  <div className="absolute left-[-15px] top-0 w-[30px] h-[30px] bg-gray-800 rounded-full flex items-center justify-center">
+                  <div className="absolute left-[-15px] top-0 w-[30px] h-[30px]  flex items-center justify-center">
                     <Image
                       src={`https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/${item.icon}`}
+                      className="rounded-full"
                       alt={item.title}
                       width={20}
                       height={20}

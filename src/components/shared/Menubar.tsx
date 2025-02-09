@@ -34,7 +34,7 @@ const Menubar: React.FC = () => {
             Home
           </Link>
           <Link href="/projects" className={
-              pathname === "/project"
+              pathname === "/projects"
                 ? "text-green-500 underline"
                 : "hover:text-gray-500 font-bold"
             }>
