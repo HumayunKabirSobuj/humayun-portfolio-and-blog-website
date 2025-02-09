@@ -2,6 +2,7 @@ const MyEducation = () => {
   return (
     <div>
       <div>
+        
         <div className="flex items-center justify-center  ">
           <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block">
             My <span className="text-[#64B5F6]">Education</span>
