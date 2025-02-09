@@ -3,13 +3,13 @@ import Image from "next/image";
 const MySkills = () => {
   return (
     <div>
-        <div>
+      <div>
         <div className="flex items-center justify-center pb-5 ">
-        <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block">
-          My <span className="text-[#64B5F6]">Skills</span>
-        </h1>
-      </div>
+          <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block">
+            My <span className="text-[#64B5F6]">Skills</span>
+          </h1>
         </div>
+      </div>
       {/*  */}
       <div className=" mx-auto px-5 lg:pt-10 pt-5 min-h-screen">
         <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-12">
