@@ -12,7 +12,7 @@ const Menubar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  console.log(pathname);
+  // console.log(pathname);
 
   return (
     <nav className="bg-gray-900 text-white p-4">
