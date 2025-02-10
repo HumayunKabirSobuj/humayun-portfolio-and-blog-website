@@ -10,8 +10,8 @@ const Banner = () => {
     AOS.init();
   }, []); //
   return (
-    <div className="w-full min-h-screen bg-gray-900">
-      <div className="container mx-auto text-white flex flex-col md:flex-row gap-10 items-center h-screen overflow-hidden px-8">
+    <div className="w-full lg:min-h-screen bg-gray-900 ">
+      <div className="container mx-auto text-white flex flex-col md:flex-row gap-10 items-center pb-5 lg:h-screen overflow-hidden px-8">
         <div className="h-auto">
           <h3
             data-aos-duration="1000"

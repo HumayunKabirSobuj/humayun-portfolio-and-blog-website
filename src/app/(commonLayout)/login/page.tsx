@@ -3,7 +3,7 @@ import React from 'react';
 
 const LoginComponent: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center  flex-col justify-center p-4">
+    <div className=" bg-gray-900 flex items-center  flex-col justify-start p-4">
         <div className=" pb-5 ">
         <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block lg:pt-16 pt-8">
           Welcome <span className="text-[#64B5F6]">Back</span>
