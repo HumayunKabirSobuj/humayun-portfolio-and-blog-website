@@ -2,7 +2,6 @@ const MyEducation = () => {
   return (
     <div>
       <div>
-        
         <div className="flex items-center justify-center  ">
           <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block">
             My <span className="text-[#64B5F6]">Education</span>
@@ -40,7 +39,7 @@ const MyEducation = () => {
                 <div className="h-44 w-[2px] bg-blue-300"></div>
               </div>
               <div className="text block md:hidden">
-              <h1 className="text-2xl font-semibold">
+                <h1 className="text-2xl font-semibold">
                   Diploma In Engineering (Computer Technology){" "}
                 </h1>
                 <h2>Rangpur Polytechnic Institute, Rangpur</h2>
@@ -60,7 +59,7 @@ const MyEducation = () => {
                 <div className="h-44 w-[2px] bg-blue-300"></div>
               </div>
               <div className="w-full md:w-1/2">
-              <h1 className="text-2xl font-semibold">
+                <h1 className="text-2xl font-semibold">
                   Secondary School Certificate (SSC){" "}
                 </h1>
                 <h2>Bondiara High School, Pirganj, Thakurgaon</h2>
@@ -68,7 +67,6 @@ const MyEducation = () => {
                 <p>Result - 4.83 (Out of 5.00)</p>
               </div>
             </div>
-            
           </div>
         </div>
         <div>
@@ -136,7 +134,7 @@ const MyEducation = () => {
               </div>
               <div className="w-full md:w-1/2">
                 <h1 className="text-2xl font-semibold">
-                Next Level Web Developemet
+                  Next Level Web Developemet
                 </h1>
                 <h2>Programming Hero</h2>
                 <p>November 2024 - Present</p>

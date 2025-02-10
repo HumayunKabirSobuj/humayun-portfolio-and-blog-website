@@ -101,7 +101,11 @@ const Menubar: React.FC = () => {
           </Link>
           <Link
             href="/projects"
-            className="block text-white hover:text-gray-400 font-bold"
+            className={
+              pathname === "/projects"
+                ? "text-green-500 underline"
+                : "block text-white hover:text-gray-400 font-bold"
+            }
           >
             Projects
           </Link>

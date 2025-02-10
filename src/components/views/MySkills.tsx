@@ -86,8 +86,8 @@ const MySkills = () => {
                       src={`https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/${item.icon}`}
                       className="rounded-full"
                       alt={item.title}
-                      width={20}
-                      height={20}
+                      width={30}
+                      height={30}
                     />
                   </div>
                   <div className="flex items-start">
@@ -170,8 +170,8 @@ const MySkills = () => {
                       src={`https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/${item.icon}`}
                       className="rounded-full"
                       alt={item.title}
-                      width={20}
-                      height={20}
+                      width={30}
+                      height={30}
                     />
                   </div>
                   <div className="flex items-start">
@@ -246,8 +246,8 @@ const MySkills = () => {
                       src={`https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/${item.icon}`}
                       className="rounded-full"
                       alt={item.title}
-                      width={20}
-                      height={20}
+                      width={30}
+                      height={30}
                     />
                   </div>
                   <div className="flex items-start">
