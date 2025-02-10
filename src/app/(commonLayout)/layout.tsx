@@ -1,10 +1,14 @@
 import Footer from "@/components/shared/Footer";
 import Menubar from "@/components/shared/Menubar";
+import { authOptions } from "../utils/authOptions";
+import { getServerSession } from "next-auth";
 
-const CommonLayout = ({ children }: { children: React.ReactNode }) => {
+const CommonLayout = async({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions);
+
   return (
     <div>
-      <Menubar />
+      <Menubar session={session}/>
       <div className="min-h-screen mt-20">{children}</div>
       <Footer />
     </div>

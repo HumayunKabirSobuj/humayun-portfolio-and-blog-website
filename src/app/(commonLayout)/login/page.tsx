@@ -1,23 +1,24 @@
-"use client"
-import React from 'react';
+"use client";
+import { signIn } from "next-auth/react";
 
-const LoginComponent: React.FC = () => {
+const LoginComponent = () => {
   return (
     <div className=" bg-gray-900 flex items-center  flex-col justify-start p-4">
-        <div className=" pb-5 ">
+      <div className=" pb-5 ">
         <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block lg:pt-16 pt-8">
           Welcome <span className="text-[#64B5F6]">Back</span>
         </h1>
       </div>
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg md:w-[60%] w-full">
-        <h2 className="text-2xl font-bold text-white mb-6 text-center">Login Here</h2>
+        <h2 className="text-2xl font-bold text-white mb-6 text-center">
+          Login Here
+        </h2>
         <div className="space-y-4">
-        <button
+          <button
             className="w-full flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
-            onClick={() => {
-              // Handle Google login
-              console.log('Login with Google');
-            }}
+            onClick={() => signIn('google',{
+              callbackUrl:"http://localhost:3000/dashboard"
+            })}
           >
             <svg
               className="w-6 h-6 mr-2"
@@ -25,18 +26,15 @@ const LoginComponent: React.FC = () => {
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <path
-                d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.344-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"
-              />
+              <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.344-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" />
             </svg>
             Login with Google
           </button>
           <button
             className="w-full flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
-            onClick={() => {
-              // Handle GitHub login
-              console.log('Login with GitHub');
-            }}
+            onClick={() => signIn('github',{
+              callbackUrl:"http://localhost:3000/dashboard"
+            })}
           >
             <svg
               className="w-6 h-6 mr-2"
@@ -52,7 +50,8 @@ const LoginComponent: React.FC = () => {
             </svg>
             Login with GitHub
           </button>
-          
+
+         
         </div>
       </div>
     </div>
