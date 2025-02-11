@@ -14,6 +14,7 @@ import React, { useState } from "react";
 import { Button, Layout, Menu } from "antd";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "sonner";
 
 const { Header, Content, Sider } = Layout;
 
@@ -82,6 +83,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             className="bg-gray-900"
           >
             <SessionProvider>{children}</SessionProvider>
+            <Toaster />
           </div>
         </Content>
       </Layout>

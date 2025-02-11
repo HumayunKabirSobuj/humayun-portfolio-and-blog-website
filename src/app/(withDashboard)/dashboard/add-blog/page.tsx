@@ -1,17 +1,20 @@
 "use client";
+import { addBlog } from "@/app/utils/actions/blogManagement";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 interface BlogFromData {
   title: string;
-  description: string;
+  short_description: string;
+  long_description: string;
   image: FileList;
 }
 
 export default function AddBlog() {
-  const { register, handleSubmit } = useForm<BlogFromData>();
+  const { register, handleSubmit, reset } = useForm<BlogFromData>();
   const [loading, setLoading] = useState(false);
 
   const { data } = useSession();
@@ -22,11 +25,7 @@ export default function AddBlog() {
   const onSubmit: SubmitHandler<BlogFromData> = async (data) => {
     // console.log(data);
 
-    const { description, title } = data;
-
-    // const image = data.image[0];
-
-    // console.log(image);
+    const { short_description,long_description, title } = data;
 
     try {
       setLoading(true);
@@ -53,14 +52,24 @@ export default function AddBlog() {
 
       const blogData = {
         title,
-        description,
+        short_description,long_description,
         image: imageUrl,
         author: {
           ...user,
         },
       };
 
-      console.log(blogData);
+      // console.log(blogData);
+      const res = await addBlog(blogData);
+      // console.log(res);
+      if (res?.success) {
+        toast.success(res.message, {
+          // id: toastId,
+          duration: 2000,
+        });
+      }
+
+      reset();
 
       setLoading(false);
     } catch (error) {
@@ -88,52 +97,69 @@ export default function AddBlog() {
         {/* Left Side - Profile Card */}
 
         {/* Right Side - Content */}
-        <div className="w-full mx-auto space-y-6 h-full">
+        <div className="w-full mx-auto space-y-6 h-screen bg-gray-800 rounded-3xl">
           {/* Add Blog Post Section */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg h-full">
-            <h3 className="text-white text-lg font-semibold mb-4">
+          <div className=" rounded-lg shadow-lg h-screen ">
+            <h3 className="text-white text-lg font-semibold mb-4 lg:px-8 px-3 pt-4">
               Add New Blog Post
             </h3>
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
-              <div>
-                <label className="block text-gray-300 text-sm mb-2">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="Enter blog title"
-                  {...register("title", { required: true })}
-                />
-              </div>
-              <div>
-                <label className="block text-gray-300 text-sm mb-2">
-                  Description
-                </label>
-                <textarea
-                  className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                  placeholder="Write your blog description..."
-                  {...register("description", { required: true })}
-                ></textarea>
-              </div>
-              <div>
-                <label className="block text-gray-300 text-sm mb-2">
-                  Image
-                </label>
-                {loading ? (
-                  <p>Uploading, please wait...</p>
-                ) : (
+            <form onSubmit={handleSubmit(onSubmit)} className="h-screen  bg-gray-800 lg:px-8 px-3 rounded-3xl">
+              <div className="space-y-5">
+                <div>
+                  <label className="block text-gray-300 text-sm mb-2 ">
+                    Title
+                  </label>
                   <input
-                    {...register("image", { required: true })}
-                    type="file"
-                    accept="image/*"
-                    className={`w-full px-4 py-2 text-white rounded-lg  border border-gray-700 focus:ring-blue-500 focus:outline-none focus:ring-2`}
+                    type="text"
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Enter blog title"
+                    {...register("title", { required: true })}
                   />
-                )}
+                </div>
+                <div>
+                  <label className="block text-gray-300 text-sm mb-2">
+                   Short Description
+                  </label>
+                  <textarea
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Write your blog description..."
+                    {...register("short_description", { required: true })}
+                  ></textarea>
+                </div>
+                <div>
+                  <label className="block text-gray-300 text-sm mb-2">
+                    Long Description
+                  </label>
+                  <textarea
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Write your blog description..."
+                    {...register("long_description", { required: true })}
+                  ></textarea>
+                </div>
+                <div>
+                  <label className="block text-gray-300 text-sm mb-2">
+                    Image
+                  </label>
+                  {loading ? (
+                    <p>Uploading, please wait...</p>
+                  ) : (
+                    <input
+                      {...register("image", { required: true })}
+                      type="file"
+                      accept="image/*"
+                      className={`w-full px-4 py-2 text-white rounded-lg  border border-gray-700 focus:ring-blue-500 focus:outline-none focus:ring-2`}
+                    />
+                  )}
+                </div>
               </div>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors">
-                Publish Post
-              </button>
+              <div className="mt-8 lg:mb-4 mb-2 text-center ">
+                <button
+                  type="submit"
+                  className="lg:w-1/3 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-2  rounded-lg transition-colors"
+                >
+                  Publish Blog
+                </button>
+              </div>
             </form>
           </div>
         </div>

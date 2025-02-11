@@ -40,12 +40,14 @@ export default async function Dashboard() {
                 </div>
 
                 <div className="flex  justify-between items-center gap-5">
-                  <Link href={"/"} className="w-full">
+                  <Link href={"/"} className="w-full flex-1">
                     <div className=" bg-gray-700 px-4 py-2 rounded-lg cursor-pointer ">
                       <span className="text-gray-300 text-sm">Home</span>
                     </div>
                   </Link>
-                  <SingOutButton />
+                  <div className="flex-1">
+                    <SingOutButton />
+                  </div>
                 </div>
               </div>
             </div>
