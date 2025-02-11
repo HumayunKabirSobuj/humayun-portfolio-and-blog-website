@@ -1,6 +1,11 @@
 "use client";
 
-import { MdDashboard } from "react-icons/md";
+import {
+  MdAddChart,
+  MdDashboard,
+  MdManageHistory,
+  MdOutlineProductionQuantityLimits,
+} from "react-icons/md";
 
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 
@@ -8,6 +13,7 @@ import React, { useState } from "react";
 
 import { Button, Layout, Menu } from "antd";
 import Link from "next/link";
+import { SessionProvider } from "next-auth/react";
 
 const { Header, Content, Sider } = Layout;
 
@@ -17,6 +23,24 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       key: "UserDashboard",
       icon: <MdDashboard />,
       label: <Link href={"/dashboard"}>Dashboard</Link>,
+    },
+    {
+      key: "BlogManagement",
+      icon: <MdOutlineProductionQuantityLimits />,
+      label: "Blog Management",
+      children: [
+        {
+          key: "AddBlog",
+          icon: <MdAddChart />,
+          label: <Link href={"/dashboard/add-blog"}>Add Blog</Link>,
+        },
+        {
+          key: "ManageBlog",
+          icon: <MdManageHistory />,
+
+          label: <Link href={"/dashboard/manage-blog"}>Manage Blog</Link>,
+        },
+      ],
     },
   ];
   const [collapsed, setCollapsed] = useState(false);
@@ -31,17 +55,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         style={{ height: "100vh", position: "sticky", top: 0, left: 0 }}
       >
         <div className="demo-logo-vertical" />
-        <Menu
-          theme="dark"
-          mode="inline"
-          
-          items={sidebarItems}
-        />
+        <Menu theme="dark" mode="inline" items={sidebarItems} />
       </Sider>
       <Layout>
         <Header
           style={{ padding: 0, position: "sticky", top: 0, zIndex: 1000 }}
-          className="bg-black min-w-f"
+          className="bg-[#001529] min-w-f"
         >
           <Button
             type="text"
@@ -60,8 +79,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             style={{
               minHeight: "100vh",
             }}
+            className="bg-gray-900"
           >
-            {children}
+            <SessionProvider>{children}</SessionProvider>
           </div>
         </Content>
       </Layout>

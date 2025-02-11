@@ -3,7 +3,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { HiDownload } from "react-icons/hi";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
 type UserProps = {
   user?: {
     name?: string | null;
@@ -61,14 +60,7 @@ const Menubar = ({ session }: { session: UserProps | null }) => {
             </Link>
           }
 
-          {
-            session?.user && <button
-            onClick={() => signOut()}
-            className="border border-red-500 text-red-500 px-5 py-2 rounded-full hover:bg-red-500 hover:text-black transition duration-200"
-          >
-            Logout
-          </button>
-          }
+          
         
           <button className="bg-gradient-to-r from-black to-gray-500 text-white px-4 py-1 rounded-md hover:opacity-90 transition-opacity">
             <span className="flex items-center gap-1">
