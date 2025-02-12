@@ -1,20 +1,24 @@
 "use client";
-import { addBlog } from "@/app/utils/actions/blogManagement";
+import { addProject } from "@/app/utils/actions/projectManagement";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-interface BlogFromData {
+interface projectFromData {
   title: string;
+  live_link: string;
+  client_link: string;
+  server_link: string;
   short_description: string;
   long_description: string;
+  technology:string;
   image: FileList;
 }
 
 export default function AddBlog() {
-  const { register, handleSubmit, reset } = useForm<BlogFromData>();
+  const { register, handleSubmit, reset } = useForm<projectFromData>();
   const [loading, setLoading] = useState(false);
 
   const { data } = useSession();
@@ -22,10 +26,18 @@ export default function AddBlog() {
   const user = data?.user;
   // console.log(user);
 
-  const onSubmit: SubmitHandler<BlogFromData> = async (data) => {
+  const onSubmit: SubmitHandler<projectFromData> = async (data) => {
     // console.log(data);
 
-    const { short_description,long_description, title } = data;
+    const {
+      title,
+      live_link,
+      client_link,
+      server_link,
+      short_description,
+      long_description,
+      technology
+    } = data;
 
     try {
       setLoading(true);
@@ -50,17 +62,24 @@ export default function AddBlog() {
 
       // console.log(imageUrl);
 
-      const blogData = {
+      const projectData = {
         title,
-        short_description,long_description,
+        live_link,
+        client_link,
+        server_link,
+        short_description,
+        long_description,
+        technology,
         image: imageUrl,
         author: {
           ...user,
         },
       };
 
+      console.log(projectData);
+
       // console.log(blogData);
-      const res = await addBlog(blogData);
+      const res = await addProject(projectData);
       // console.log(res);
       if (res?.success) {
         toast.success(res.message, {
@@ -93,17 +112,20 @@ export default function AddBlog() {
 
   return (
     <div className="min-h-screen bg-gray-900">
-      <div className="flex flex-col lg:flex-row p-4 gap-4 h-screen">
+      <div className="flex flex-col lg:flex-row p-4 gap-4 min-h-screen">
         {/* Left Side - Profile Card */}
 
         {/* Right Side - Content */}
-        <div className="w-full mx-auto space-y-6 h-screen bg-gray-800 rounded-3xl">
+        <div className="w-full mx-auto space-y-6 min-h-screen bg-gray-800 rounded-3xl  ">
           {/* Add Blog Post Section */}
-          <div className=" rounded-lg shadow-lg h-screen ">
+          <div className=" rounded-lg shadow-lg min-h-screen  ">
             <h3 className="text-white text-lg font-semibold mb-4 lg:px-8 px-3 pt-4">
-              Add New Blog Post
+              Add New Project
             </h3>
-            <form onSubmit={handleSubmit(onSubmit)} className="min-h-screen  bg-gray-800 lg:px-8 px-3 rounded-3xl">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="min-h-screen  bg-gray-800 lg:px-8 px-3 rounded-3xl"
+            >
               <div className="space-y-5">
                 <div>
                   <label className="block text-gray-300 text-sm mb-2 ">
@@ -112,17 +134,54 @@ export default function AddBlog() {
                   <input
                     type="text"
                     className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Enter blog title"
+                    placeholder="Enter project title"
                     {...register("title", { required: true })}
                   />
                 </div>
+                {/*  */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-gray-300 text-sm mb-2 ">
+                      Live Link
+                    </label>
+                    <input
+                      type="url"
+                      className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                      placeholder="Enter project live link"
+                      {...register("live_link", { required: true })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-gray-300 text-sm mb-2 ">
+                      Frontend Code Link
+                    </label>
+                    <input
+                      type="url"
+                      className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                      placeholder="Enter project live link"
+                      {...register("client_link", { required: true })}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-gray-300 text-sm mb-2 ">
+                      Backend Code Link
+                    </label>
+                    <input
+                      type="url"
+                      className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                      placeholder="Enter project live link"
+                      {...register("server_link", { required: true })}
+                    />
+                  </div>
+                </div>
+                {/*  */}
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
-                   Short Description
+                    Short Description
                   </label>
                   <textarea
                     className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Write your blog description..."
+                    placeholder="Write your project description..."
                     {...register("short_description", { required: true })}
                   ></textarea>
                 </div>
@@ -132,9 +191,20 @@ export default function AddBlog() {
                   </label>
                   <textarea
                     className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Write your blog description..."
+                    placeholder="Write your project description..."
                     {...register("long_description", { required: true })}
                   ></textarea>
+                </div>
+                <div>
+                  <label className="block text-gray-300 text-sm mb-2 ">
+                    Technology
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Enter project title"
+                    {...register("technology", { required: true })}
+                  />
                 </div>
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
@@ -157,7 +227,7 @@ export default function AddBlog() {
                   type="submit"
                   className="lg:w-1/3 w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-2  rounded-lg transition-colors"
                 >
-                  Publish Blog
+                  Add Project
                 </button>
               </div>
             </form>

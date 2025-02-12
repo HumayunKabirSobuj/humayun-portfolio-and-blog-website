@@ -23,3 +23,16 @@ export const getAllBlog = async () => {
 
   return res.json();
 };
+
+export const DeleteBlog = async (data: Record<string, unknown>) => {
+  const res = await fetch(`${process.env.BACKEND_URL}/blogs/delete-blog`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+  const blogInfo = await res.json();
+  return blogInfo;
+};

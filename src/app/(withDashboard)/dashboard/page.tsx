@@ -1,5 +1,7 @@
+import { getAllBlog } from "@/app/utils/actions/blogManagement";
 import { authOptions } from "@/app/utils/authOptions";
 import SingOutButton from "@/components/shared/SingOutButton";
+import { TBlog } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,12 +11,19 @@ export default async function Dashboard() {
   const user = session?.user;
   const salesData = [60, 80, 45, 90, 75]; // চার্টের উচ্চতা
 
+  const blogs = await getAllBlog();
+  const matchBlog = blogs?.data?.filter(
+    (blog: TBlog) => blog?.author?.email === user?.email
+  );
+
+  // console.log(matchBlog);
+
   return (
     <div className="min-h-screen bg-gray-900">
       <div className="flex flex-col lg:flex-row p-4 gap-4">
         {/* Left Side - Profile Card */}
-        <div className="w-full lg:w-1/4">
-          <div className="bg-gray-800 rounded-lg p-6 shadow-lg lg:min-h-screen">
+        <div className="w-full lg:w-1/4 min-h-full ">
+          <div className="bg-gray-800 rounded-lg p-6 shadow-lg  min-h-full ">
             <div className="flex flex-col items-center">
               <Image
                 src={user?.image as string}
@@ -32,7 +41,9 @@ export default async function Dashboard() {
               <div className="w-full flex flex-col gap-3">
                 <div className="flex justify-between items-center bg-gray-700 px-4 py-2 rounded-lg cursor-pointer">
                   <span className="text-gray-300 text-sm">Blog Posts</span>
-                  <span className="text-white font-bold">12</span>
+                  <span className="text-white font-bold">
+                    {matchBlog.length}
+                  </span>
                 </div>
                 <div className=" flex justify-between items-center bg-gray-700 px-4 py-2 rounded-lg cursor-pointer">
                   <span className="text-gray-300 text-sm">Projects</span>
@@ -57,37 +68,25 @@ export default async function Dashboard() {
         {/* Right Side - Content Area */}
         <div className="w-full lg:w-3/4 space-y-6">
           {/* Statistics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Total Revenue",
-                value: "$12,345",
-                color: "text-green-400",
-                subtitle: "Last 30 days",
-              },
-              {
-                title: "New Users",
-                value: "1,234",
-                color: "text-blue-400",
-                subtitle: "Last 30 days",
-              },
-              {
-                title: "Active Projects",
-                value: "45",
-                color: "text-purple-400",
-                subtitle: "Currently Active",
-              },
-            ].map((card, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                <h3 className="text-white text-lg font-semibold mb-2">
-                  {card.title}
-                </h3>
-                <p className={`text-2xl font-bold ${card.color}`}>
-                  {card.value}
-                </p>
-                <p className="text-gray-400 text-sm">{card.subtitle}</p>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h3 className="text-white text-lg font-semibold mb-2">
+                Total Blogs
+              </h3>
+              <p className={`text-2xl font-bold text-green-500`}>
+                {blogs?.data?.length}
+              </p>
+              <p className="text-gray-400 text-sm"></p>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+              <h3 className="text-white text-lg font-semibold mb-2">
+                Total Projects
+              </h3>
+              <p className={`text-2xl font-bold text-green-500`}>
+                {blogs?.data?.length}
+              </p>
+              <p className="text-gray-400 text-sm"></p>
+            </div>
           </div>
 
           {/* Chart Section */}
@@ -123,10 +122,10 @@ export default async function Dashboard() {
                 <thead>
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                      Activity
+                      Image
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                      Date
+                      Title
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                       Status
@@ -134,37 +133,27 @@ export default async function Dashboard() {
                   </tr>
                 </thead>
                 <tbody className="bg-gray-800 divide-y divide-gray-700">
-                  {[
-                    {
-                      activity: "Project Alpha Launch",
-                      date: "2023-10-01",
-                      status: "Completed",
-                      color: "text-green-400",
-                    },
-                    {
-                      activity: "Blog Post Published",
-                      date: "2023-10-05",
-                      status: "In Progress",
-                      color: "text-yellow-400",
-                    },
-                    {
-                      activity: "User Feedback Collected",
-                      date: "2023-10-10",
-                      status: "Pending",
-                      color: "text-red-400",
-                    },
-                  ].map((row, index) => (
-                    <tr key={index} className="cursor-pointer">
+                  {matchBlog.map((row: TBlog) => (
+                    <tr key={row?._id} className="cursor-pointer">
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                        {row.activity}
+                        <div className="w-24 rounded-xl overflow-hidden">
+                          <Image
+                            src={row.image}
+                            alt="Avatar"
+                            width={96} // 24 * 4 = 96px
+                            height={96}
+                            className="object-cover"
+                          />
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                        {row.date}
+                        {row?.title}
                       </td>
                       <td
-                        className={`px-6 py-4 whitespace-nowrap text-sm ${row.color}`}
+                        className={`px-6 py-4 whitespace-nowrap text-sm flex items-center text-green-300`}
                       >
-                        {row.status}
+
+                        Actived
                       </td>
                     </tr>
                   ))}

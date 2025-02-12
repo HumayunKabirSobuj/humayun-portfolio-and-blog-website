@@ -7,7 +7,7 @@ import MySkills from "@/components/views/MySkills";
 import RobotAnimation from "@/components/views/RobotAnimation";
 import RobotAnimation2 from "@/components/views/RobotAnimation2";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <div className="flex flex-col lg:flex-row">
@@ -19,6 +19,7 @@ export default function Home() {
       <MySkills />
       <MyEducation />
       <MyProjects />
+
       <ContactMe />
     </div>
   );

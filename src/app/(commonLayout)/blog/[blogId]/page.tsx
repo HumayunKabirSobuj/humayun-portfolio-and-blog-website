@@ -22,13 +22,22 @@ const BlogDetailsPage = async ({ params }: { params: { blogId: string } }) => {
   return (
     <div className="bg-gray-800 shadow-2xl text-white p-6 rounded-xl w-5/6 mx-auto flex flex-col gap-6 my-5">
       <div className=" flex items-center justify-end">
-        <Link href={'/blog'}>
-          <button className="text-2xl border-2 rounded-full">
-            <div className="p-2">
-              <ImCross />
-            </div>
-          </button>
-        </Link>
+        <div className="flex-1">
+          <div className="flex items-center justify-center">
+            <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block">
+              Blog <span className="text-[#64B5F6]">Details</span>
+            </h1>
+          </div>
+        </div>
+        <div>
+          <Link href={"/blog"}>
+            <button className="text-2xl border-2 rounded-full">
+              <div className="p-2">
+                <ImCross />
+              </div>
+            </button>
+          </Link>
+        </div>
       </div>
 
       {/* Blog Image */}

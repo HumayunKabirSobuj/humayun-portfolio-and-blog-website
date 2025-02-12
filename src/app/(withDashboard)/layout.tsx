@@ -15,6 +15,7 @@ import { Button, Layout, Menu } from "antd";
 import Link from "next/link";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
+import { FaMessage } from "react-icons/fa6";
 
 const { Header, Content, Sider } = Layout;
 
@@ -24,6 +25,23 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       key: "UserDashboard",
       icon: <MdDashboard />,
       label: <Link href={"/dashboard"}>Dashboard</Link>,
+    },
+    {
+      key: "ProjectManagement",
+      icon: <MdOutlineProductionQuantityLimits />,
+      label: "Project Management",
+      children: [
+        {
+          key: "AddProject",
+          icon: <MdAddChart />,
+          label: <Link href={"/dashboard/add-project"}>Add Project</Link>,
+        },
+        {
+          key: "ManageProject",
+          icon: <MdManageHistory />,
+          label: <Link href={"/dashboard/manage-project"}>Manage Project</Link>,
+        },
+      ],
     },
     {
       key: "BlogManagement",
@@ -43,6 +61,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         },
       ],
     },
+
+    {
+      key: "MySendingMessage",
+      icon: <FaMessage />,
+      label: <Link href={"/my-message"}>My sending message</Link>,
+    },
+   
   ];
   const [collapsed, setCollapsed] = useState(false);
 
