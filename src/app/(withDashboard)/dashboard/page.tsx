@@ -1,7 +1,8 @@
 import { getAllBlog } from "@/app/utils/actions/blogManagement";
+import { getAllProject } from "@/app/utils/actions/projectManagement";
 import { authOptions } from "@/app/utils/authOptions";
 import SingOutButton from "@/components/shared/SingOutButton";
-import { TBlog } from "@/types/types";
+import { TBlog, TProject } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,12 @@ export default async function Dashboard() {
     (blog: TBlog) => blog?.author?.email === user?.email
   );
 
-  // console.log(matchBlog);
+  const projects = await getAllProject()
+  const matchProject = projects?.data?.filter(
+    (project: TProject) => project?.author?.email === user?.email
+  );
+
+
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -40,14 +46,14 @@ export default async function Dashboard() {
 
               <div className="w-full flex flex-col gap-3">
                 <div className="flex justify-between items-center bg-gray-700 px-4 py-2 rounded-lg cursor-pointer">
-                  <span className="text-gray-300 text-sm">Blog Posts</span>
+                  <span className="text-gray-300 text-sm">Your Blogs</span>
                   <span className="text-white font-bold">
                     {matchBlog.length}
                   </span>
                 </div>
                 <div className=" flex justify-between items-center bg-gray-700 px-4 py-2 rounded-lg cursor-pointer">
-                  <span className="text-gray-300 text-sm">Projects</span>
-                  <span className="text-white font-bold">8</span>
+                  <span className="text-gray-300 text-sm">Your Projects</span>
+                  <span className="text-white font-bold">{matchProject.length}</span>
                 </div>
 
                 <div className="flex  justify-between items-center gap-5">
@@ -83,7 +89,7 @@ export default async function Dashboard() {
                 Total Projects
               </h3>
               <p className={`text-2xl font-bold text-green-500`}>
-                {blogs?.data?.length}
+                {projects?.data?.length}
               </p>
               <p className="text-gray-400 text-sm"></p>
             </div>

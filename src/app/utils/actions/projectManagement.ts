@@ -23,3 +23,16 @@ export const getAllProject = async () => {
 
   return res.json();
 };
+
+export const DeleteProject = async (data: Record<string, unknown>) => {
+  const res = await fetch(`${process.env.BACKEND_URL}/projects/delete-project`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+    cache: "no-store",
+  });
+  const projectInfo = await res.json();
+  return projectInfo;
+};
