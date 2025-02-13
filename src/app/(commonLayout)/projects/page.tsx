@@ -25,7 +25,7 @@ const ProjectsPage = async () => {
         {projects?.data?.map((blog: TProject) => (
           <div
             key={blog._id}
-            className="flex gap-4 flex-col lg:flex-row lg:px-10 px-3  items-center h-80"
+            className="flex gap-4 flex-col lg:flex-row lg:px-10 px-3  items-center h-auto"
           >
             <div className="w-full lg:w-[30%] overflow-hidden rounded-xl flex items-center justify-center  h-[250px]">
               <Image

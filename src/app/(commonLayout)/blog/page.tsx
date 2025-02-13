@@ -24,7 +24,7 @@ const BlogPage = async () => {
         {blogs?.data?.map((blog: TBlog) => (
           <div
             key={blog._id}
-            className="flex gap-4 flex-col lg:flex-row lg:px-10 px-3 h-[220px]"
+            className="flex gap-4 flex-col lg:flex-row lg:px-10 px-3 h-auto"
           >
             <div className="w-full lg:w-[30%] overflow-hidden rounded-xl flex items-center justify-center  ">
               <Image
