@@ -4,7 +4,7 @@ import { toast } from "sonner";
 
 const DeleteBlogButton = (id: { id: string }) => {
   const handleDeleteButton = async (blogId: { id: string }) => {
-    console.log(blogId);
+    // console.log(blogId);
     const res = await DeleteBlog(blogId);
     toast.success(res.message, { duration: 2000 });
   };

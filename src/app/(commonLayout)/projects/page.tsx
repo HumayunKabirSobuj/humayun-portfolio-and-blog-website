@@ -1,10 +1,14 @@
 import { getAllProject } from "@/app/utils/actions/projectManagement";
 import { TProject } from "@/types/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
-
+export const metadata: Metadata = {
+  title: "HUMAYUN | Projects",
+ 
+};
 const ProjectsPage = async () => {
   const projects = await getAllProject();
 

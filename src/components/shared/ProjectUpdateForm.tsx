@@ -21,7 +21,7 @@ export default function ProjectUpdateFrom(
 ) {
   const project = projectData?.projectData as TProject;
 
-  const { register, handleSubmit } = useForm<ProjectFromData>();
+  const { register, handleSubmit ,formState: { errors }} = useForm<ProjectFromData>();
   const [loading, setLoading] = useState(false);
 
   const onSubmit: SubmitHandler<ProjectFromData> = async (data) => {
@@ -53,16 +53,17 @@ export default function ProjectUpdateFrom(
 
       // console.log(blogData);
 
-     await axios.put(
-        "http://localhost:8080/api/projects/update-project",
+      await axios.put(
+        "https://blog-and-portfilio-backend.vercel.app/api/projects/update-project",
         projectData
       );
-    //   console.log(res.data);
+      //   console.log(res.data);
 
       setLoading(false);
-      toast.success("Project Updated Successfully ..", {duration:2000});
+      toast.success("Project Updated Successfully ..", { duration: 2000 });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -137,28 +138,62 @@ export default function ProjectUpdateFrom(
                     />
                   </div>
                 </div>
-                <div>
+
+                 {/* Short Description */}
+                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
                     Short Description
                   </label>
                   <textarea
                     className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
                     placeholder="Write your blog description..."
-                    {...register("short_description", { required: true })}
                     defaultValue={project?.short_description}
+                    {...register("short_description", {
+                      required: "Blog description is required",
+                      maxLength: {
+                        value: 720,
+                        message:
+                          "Short Description cannot exceed 720 characters",
+                      },
+                    })}
                   ></textarea>
+                  {errors.short_description && (
+                    <p className="text-red-500 text-sm">
+                      {errors.short_description.message}
+                    </p>
+                  )}
                 </div>
+
+
+
+
+                {/* Long */}
+
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
                     Long Description
                   </label>
+                  {/* Long Description */}
                   <textarea
-                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Write your blog description..."
-                    {...register("long_description", { required: true })}
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-40 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Write your blog long description..."
                     defaultValue={project?.long_description}
+                    {...register("long_description", {
+                      required: "Long description is required",
+                      maxLength: {
+                        value: 2200,
+                        message:
+                          "Long description cannot exceed 2200 characters",
+                      },
+                    })}
                   ></textarea>
+                  {errors.long_description && (
+                    <p className="text-red-500 text-sm">
+                      {errors.long_description.message}
+                    </p>
+                  )}
                 </div>
+                
               </div>
               <div className="mt-8  mb-2 text-center ">
                 <button

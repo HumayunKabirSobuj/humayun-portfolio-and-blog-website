@@ -1,10 +1,14 @@
 import { getAllBlog } from "@/app/utils/actions/blogManagement";
 import { TBlog } from "@/types/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 
-
+export const metadata: Metadata = {
+  title: "HUMAYUN | Blog",
+ 
+};
 
 const BlogPage = async () => {
   const blogs = await getAllBlog();

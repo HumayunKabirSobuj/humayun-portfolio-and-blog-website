@@ -1,9 +1,13 @@
 import { getAllBlog } from "@/app/utils/actions/blogManagement";
 import { TBlog } from "@/types/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ImCross } from "react-icons/im";
-
+export const metadata: Metadata = {
+  title: "Blog Details",
+  
+};
 const BlogDetailsPage = async ({ params }: { params: { blogId: string } }) => {
   const blogs = await getAllBlog();
 

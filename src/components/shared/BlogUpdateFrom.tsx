@@ -16,7 +16,11 @@ interface BlogFromData {
 export default function BlogUpdateFrom(blogData: Record<string, unknown>) {
   const blog = blogData?.blogData as TBlog;
 
-  const { register, handleSubmit } = useForm<BlogFromData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<BlogFromData>();
   const [loading, setLoading] = useState(false);
 
   const onSubmit: SubmitHandler<BlogFromData> = async (data) => {
@@ -35,23 +39,21 @@ export default function BlogUpdateFrom(blogData: Record<string, unknown>) {
       // console.log(blogData);
 
       await axios.put(
-        "http://localhost:8080/api/blogs/update-blog",
+        "https://blog-and-portfilio-backend.vercel.app/api/blogs/update-blog",
         blogData
       );
       // console.log(res.data);
 
       setLoading(false);
-      toast.success("Blog Updated Successfully ..", {duration:2000});
-
+      toast.success("Blog Updated Successfully ..", { duration: 2000 });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
   if (loading) {
-    return (
-      <Loader/>
-    );
+    return <Loader />;
   }
 
   return (
@@ -83,6 +85,7 @@ export default function BlogUpdateFrom(blogData: Record<string, unknown>) {
                     {...register("title", { required: true })}
                   />
                 </div>
+                {/* Short Description */}
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
                     Short Description
@@ -90,20 +93,46 @@ export default function BlogUpdateFrom(blogData: Record<string, unknown>) {
                   <textarea
                     className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
                     placeholder="Write your blog description..."
-                    {...register("short_description", { required: true })}
                     defaultValue={blog?.short_description}
+                    {...register("short_description", {
+                      required: "Blog description is required",
+                      maxLength: {
+                        value: 720,
+                        message:
+                          "Short Description cannot exceed 720 characters",
+                      },
+                    })}
                   ></textarea>
+                  {errors.short_description && (
+                    <p className="text-red-500 text-sm">
+                      {errors.short_description.message}
+                    </p>
+                  )}
                 </div>
+                {/* Long Description */}
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
                     Long Description
                   </label>
+
                   <textarea
-                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Write your blog description..."
-                    {...register("long_description", { required: true })}
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-40 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Write your blog long description..."
                     defaultValue={blog?.long_description}
+                    {...register("long_description", {
+                      required: "Long description is required",
+                      maxLength: {
+                        value: 2200,
+                        message:
+                          "Long description cannot exceed 2200 characters",
+                      },
+                    })}
                   ></textarea>
+                  {errors.long_description && (
+                    <p className="text-red-500 text-sm">
+                      {errors.long_description.message}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="mt-8  mb-2 text-center ">

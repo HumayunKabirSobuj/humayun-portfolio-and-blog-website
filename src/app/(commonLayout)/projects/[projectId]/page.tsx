@@ -1,10 +1,14 @@
 import { getAllProject } from "@/app/utils/actions/projectManagement";
 import { TProject } from "@/types/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-
+export const metadata: Metadata = {
+  title: "Project Details",
+ 
+};
 const ProjectDetailsPage = async ({
   params,
 }: {

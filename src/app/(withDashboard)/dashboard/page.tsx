@@ -3,10 +3,15 @@ import { getAllProject } from "@/app/utils/actions/projectManagement";
 import { authOptions } from "@/app/utils/authOptions";
 import SingOutButton from "@/components/shared/SingOutButton";
 import { TBlog, TProject } from "@/types/types";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Dashboard",
+ 
+};
 export default async function Dashboard() {
   const session = await getServerSession(authOptions);
   const user = session?.user;

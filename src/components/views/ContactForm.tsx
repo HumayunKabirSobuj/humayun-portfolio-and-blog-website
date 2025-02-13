@@ -19,7 +19,7 @@ const ContactForm = (user: ContactFormProps) => {
   const onSubmit = async (data: FieldValues) => {
 
     const res = await axios.post(
-      "http://localhost:8080/api/message/add-message",
+      "https://blog-and-portfilio-backend.vercel.app/api/message/add-message",
       data
     );
 

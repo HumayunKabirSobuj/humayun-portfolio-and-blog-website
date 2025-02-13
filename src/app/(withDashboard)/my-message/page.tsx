@@ -1,10 +1,14 @@
 import { TMessage } from "@/types/types";
 import axios from "axios";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
-
+export const metadata: Metadata = {
+  title: "My Messages",
+  
+};
 const MyMessagePage = async () => {
-  const res = await axios.get("http://localhost:8080/api/message");
+  const res = await axios.get("https://blog-and-portfilio-backend.vercel.app/api/message");
   const allMessage = await res.data;
   //   console.log(allMessage);
 

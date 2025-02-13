@@ -2,16 +2,21 @@ import { getAllBlog } from "@/app/utils/actions/blogManagement";
 import { authOptions } from "@/app/utils/authOptions";
 import DeleteBlogButton from "@/components/shared/DeleteBlogButton";
 import { TBlog } from "@/types/types";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
+export const metadata: Metadata = {
+  title: "Manage Blog",
+  
+};
 
 const ManageBlogPage = async () => {
   const session = await getServerSession(authOptions);
   const user = session?.user;
 
   if (!user?.email) {
-    console.log("No user found");
+    // console.log("No user found");
     return [];
   }
 
@@ -21,8 +26,6 @@ const ManageBlogPage = async () => {
   );
 
   //   console.log(matchBlog);
-
-  
 
   return (
     <div>
@@ -63,12 +66,16 @@ const ManageBlogPage = async () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                     {row?.title}
                   </td>
-                  <td className={`px-6 py-4 whitespace-nowrap text-sm flex items-center`}>
-                    <Link href={`/dashboard/update-blog/${row?._id}`} className="bg-gray-700 text-white px-4 py-2 rounded-md">
+                  <td
+                    className={`px-6 py-4 whitespace-nowrap text-sm flex items-center`}
+                  >
+                    <Link
+                      href={`/dashboard/update-blog/${row?._id}`}
+                      className="bg-gray-700 text-white px-4 py-2 rounded-md"
+                    >
                       UPDATE
                     </Link>
-                    <DeleteBlogButton id={row?._id}/>
-                    
+                    <DeleteBlogButton id={row?._id} />
                   </td>
                 </tr>
               ))}

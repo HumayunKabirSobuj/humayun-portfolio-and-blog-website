@@ -1,8 +1,8 @@
 "use server";
 
 export const addProject = async (data: Record<string, unknown>) => {
-  console.log("function =>", data);
-  const res = await fetch(`http://localhost:8080/api/projects/add-project`, {
+  // console.log("function =>", data);
+  const res = await fetch(`https://blog-and-portfilio-backend.vercel.app/api/projects/add-project`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

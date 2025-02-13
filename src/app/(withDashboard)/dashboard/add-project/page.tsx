@@ -18,7 +18,7 @@ interface projectFromData {
 }
 
 export default function AddBlog() {
-  const { register, handleSubmit, reset } = useForm<projectFromData>();
+  const { register, handleSubmit, reset ,formState: { errors },} = useForm<projectFromData>();
   const [loading, setLoading] = useState(false);
 
   const { data } = useSession();
@@ -76,7 +76,7 @@ export default function AddBlog() {
         },
       };
 
-      console.log(projectData);
+      // console.log(projectData);
 
       // console.log(blogData);
       const res = await addProject(projectData);
@@ -91,8 +91,9 @@ export default function AddBlog() {
       reset();
 
       setLoading(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -167,25 +168,52 @@ export default function AddBlog() {
                   </div>
                 </div>
                 {/*  */}
+                {/* Short Description */}
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
                     Short Description
                   </label>
                   <textarea
                     className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Write your project description..."
-                    {...register("short_description", { required: true })}
-                  ></textarea>
+                    placeholder="Write your blog description..."
+                    {...register("short_description", {
+                      required: "Blog description is required",
+                      maxLength: {
+                        value: 720,
+                        message:
+                          "Short Description cannot exceed 720 characters",
+                      },
+                    })}
+                  />
+                  {errors.short_description && (
+                    <p className="text-red-500 text-sm">
+                      {errors.short_description.message}
+                    </p>
+                  )}
                 </div>
+                {/* Long Description */}
                 <div>
                   <label className="block text-gray-300 text-sm mb-2">
                     Long Description
                   </label>
+                  {/* Long Description */}
                   <textarea
-                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-                    placeholder="Write your project description..."
-                    {...register("long_description", { required: true })}
-                  ></textarea>
+                    className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 h-40 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="Write your blog long description..."
+                    {...register("long_description", {
+                      required: "Long description is required",
+                      maxLength: {
+                        value: 2200,
+                        message:
+                          "Long description cannot exceed 2200 characters",
+                      },
+                    })}
+                  />
+                  {errors.long_description && (
+                    <p className="text-red-500 text-sm">
+                      {errors.long_description.message}
+                    </p>
+                  )}
                 </div>
                 <div>
                   <label className="block text-gray-300 text-sm mb-2 ">

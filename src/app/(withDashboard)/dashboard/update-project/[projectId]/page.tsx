@@ -1,7 +1,11 @@
 import { getAllProject } from "@/app/utils/actions/projectManagement";
 import ProjectUpdateFrom from "@/components/shared/ProjectUpdateForm";
 import { TProject } from "@/types/types";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Update Project",
+  
+};
 const UpdateProject = async ({ params }: { params: { projectId: string } }) => {
     
   // console.log(await params);

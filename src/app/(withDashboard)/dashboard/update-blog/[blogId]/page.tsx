@@ -1,7 +1,11 @@
 import { getAllBlog } from "@/app/utils/actions/blogManagement";
 import BlogUpdateFrom from "@/components/shared/BlogUpdateFrom";
 import { TBlog } from "@/types/types";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Update Blog",
+  
+};
 const UpdateBlog = async ({ params }: { params: { blogId: string } }) => {
     
   // console.log(await params);
