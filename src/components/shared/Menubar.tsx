@@ -42,15 +42,17 @@ const Menubar = ({ session }: { session: UserProps | null }) => {
             </Link>
           ))}
 
-          {
-            session?.user ? <Link
-            href="/dashboard"
-            className={`font-bold hover:text-gray-300 transition-colors ${
-              pathname === "/dashboard" ? "text-green-500 underline" : ""
-            }`}
-          >
-            Dashboard
-          </Link> :<Link
+          {session?.user ? (
+            <Link
+              href="/dashboard"
+              className={`font-bold hover:text-gray-300 transition-colors ${
+                pathname === "/dashboard" ? "text-green-500 underline" : ""
+              }`}
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <Link
               href="/login"
               className={`font-bold hover:text-gray-300 transition-colors ${
                 pathname === "/login" ? "text-green-500 underline" : ""
@@ -58,15 +60,19 @@ const Menubar = ({ session }: { session: UserProps | null }) => {
             >
               Login
             </Link>
-          }
+          )}
 
-          
-        
-          <button className="bg-gradient-to-r from-black to-gray-500 text-white px-4 py-1 rounded-md hover:opacity-90 transition-opacity">
-            <span className="flex items-center gap-1">
-              Resume <HiDownload className="text-md" />
-            </span>
-          </button>
+          <Link
+            href={
+              "https://drive.google.com/uc?export=download&id=1JO2XZZ4wocv5SC5CtjYhSHVJ4DFSIDJo"
+            }
+          >
+            <button className="bg-gradient-to-r from-black to-gray-500 text-white px-4 py-1 rounded-md hover:opacity-90 transition-opacity">
+              <span className="flex items-center gap-1">
+                Resume <HiDownload className="text-md" />
+              </span>
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button - শুরু থেকেই দৃশ্যমান */}
@@ -128,11 +134,17 @@ const Menubar = ({ session }: { session: UserProps | null }) => {
             </Link>
           ))}
 
-          <button className="mt-8 bg-gradient-to-r from-black to-gray-500 text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">
-            <span className="flex items-center gap-1">
-              Resume <HiDownload className="text-lg" />
-            </span>
-          </button>
+          <Link
+            href={
+              "https://drive.google.com/uc?export=download&id=1JO2XZZ4wocv5SC5CtjYhSHVJ4DFSIDJo"
+            }
+          >
+            <button className="mt-8 bg-gradient-to-r from-black to-gray-500 text-white px-6 py-2 rounded-md hover:opacity-90 transition-opacity">
+              <span className="flex items-center gap-1">
+                Resume <HiDownload className="text-lg" />
+              </span>
+            </button>
+          </Link>
         </div>
       </div>
     </nav>

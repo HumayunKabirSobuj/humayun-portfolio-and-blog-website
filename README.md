@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio & Blog Website 📚
 
-## Getting Started
+This project is a Personal Portfolio & Blog Website built using Next.js. It provides a platform to showcase your portfolio, blog posts, and manage them through an authenticated dashboard. The website allows users to explore various pages like home, projects, blogs, and contact, while also offering an admin panel for managing content such as blog posts, projects, and messages
 
-First, run the development server:
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Available-green)](https://humayun-portfolio-and-blog-website.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Live :
+
+```
+https://humayun-portfolio-and-blog-website.vercel.app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 🔹 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 1️⃣ Public Pages (Accessible to All Users)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Home Page (/):
 
-## Learn More
+- Displays an introduction with your name, bio, and
+- profile picture.
+- Showcases your skills using icons or skill bars.
+- Highlights featured projects, either static or fetched from an API.
+- Provides a resume download button.
 
-To learn more about Next.js, take a look at the following resources:
+### Projects Page (/projects):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Lists all your projects with images, descriptions, and links.
+- Clicking on a project opens a detailed page (/projects/[id]).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Blog Page (/blog):
 
-## Deploy on Vercel
+- Displays a list of blog posts fetched from an API or JSON file.
+- Clicking on a blog opens a detailed blog page (/blog/[id]).
+### Contact Page (/contact):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Contains a contact form where users can send messages (name, email, and message).
+- Messages are saved in local storage or a database
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 2️⃣ Dashboard (Only for Logged-in Users)
+### Login (/dashboard):
+
+- Uses Next Auth for social login.
+- Only authenticated users can access the dashboard.
+### Blog Management (/dashboard/blogs):
+
+- Allows users to create, read, edit, or delete blog posts.
+- Form with fields like title, content, image, and category.
+### Project Management (/dashboard/projects):
+
+- Allows users to perform CRUD (Create, Read, Update, Delete) operations on projects.
+- Upload project image, title, live link, descriptions, etc.
+### Message Management (/dashboard/messages):
+
+- Displays all the messages submitted from the contact form.
+
+## Tech Stack 💻
+
+#  Project Setup Guide
+
+![Project Stack](https://img.shields.io/badge/Full_Stack-Project-blueviolet)
+
+## Technology Stack 🔧
+
+**Frontend**  
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-blueviolet)
+![Next.js](https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-blue)
+![Ant Design](https://img.shields.io/badge/Ant_Design-%230072f6)
+
+**Backend**  
+![TypeScript](https://img.shields.io/badge/TypeScript-blue)
+![Node.js](https://img.shields.io/badge/Node.js-green)
+![Express](https://img.shields.io/badge/Express-lightgrey)
+![MongoDB](https://img.shields.io/badge/MongoDB-green)
+![JWT](https://img.shields.io/badge/JWT-blue)
+
+
+
+## Development Setup 🛠️
+
+### Frontend Setup
+
+## Installation 🛠️
+
+1. Clone repository
+
+```
+Clone Repository : https://github.com/HumayunKabirSobuj/humayun-portfolio-and-blog-website-client.git
+```
+
+2. cd humayun-portfolio-and-blog-website-client
+
+```
+npm install
+```
+
+1. Create .env file
+
+```
+VITE_API_LINk : <provide your api link here>
+ROBOT_ANIMATION=<provide your Spline animation link here>
+GITHUB_ID=<provide your GITHUB_ID link here>
+GITHUB_SECRET=<provide your GITHUB_SECRET link here>
+GOOGLE_CLIENT_ID=<provide your GOOGLE_CLIENT_ID link here>o59ko.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=<provide your GOOGLE_CLIENT_SECRET link here>
+NEXTAUTH_SECRET=<provide your NEXTAUTH_SECRET link here>
+BACKEND_URL=<provide your BACKEND_URL link here>
+```
+
+4. Run Project
+
+```
+npm run dev
+```
+
+Developed with ❤️ by [Md. Humayun Kabir Sobuj]
+
+Contact: devhumayun@gmail.com
