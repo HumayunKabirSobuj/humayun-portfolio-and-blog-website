@@ -67,15 +67,6 @@ https://humayun-portfolio-and-blog-website.vercel.app
 ![TypeScript](https://img.shields.io/badge/TypeScript-blue)
 ![Ant Design](https://img.shields.io/badge/Ant_Design-%230072f6)
 
-**Backend**  
-![TypeScript](https://img.shields.io/badge/TypeScript-blue)
-![Node.js](https://img.shields.io/badge/Node.js-green)
-![Express](https://img.shields.io/badge/Express-lightgrey)
-![MongoDB](https://img.shields.io/badge/MongoDB-green)
-![JWT](https://img.shields.io/badge/JWT-blue)
-
-
-
 ## Development Setup 🛠️
 
 ### Frontend Setup
