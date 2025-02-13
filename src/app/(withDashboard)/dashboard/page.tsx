@@ -37,7 +37,7 @@ export default async function Dashboard() {
           <div className="bg-gray-800 rounded-lg p-6 shadow-lg  min-h-full ">
             <div className="flex flex-col items-center">
               <Image
-                src={user?.image as string}
+                src={user?.image as string || "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png"}
                 alt="profile image"
                 height={120}
                 width={120}

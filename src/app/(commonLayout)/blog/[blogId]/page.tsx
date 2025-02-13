@@ -6,7 +6,6 @@ import Link from "next/link";
 import { ImCross } from "react-icons/im";
 export const metadata: Metadata = {
   title: "Blog Details",
-  
 };
 const BlogDetailsPage = async ({ params }: { params: { blogId: string } }) => {
   const blogs = await getAllBlog();
