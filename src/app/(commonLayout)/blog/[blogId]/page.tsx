@@ -7,11 +7,16 @@ import { ImCross } from "react-icons/im";
 export const metadata: Metadata = {
   title: "Blog Details",
 };
-const BlogDetailsPage = async ({ params }: { params: { blogId: string } }) => {
+interface IProps {
+  params: Promise<{
+    blogId: string;
+  }>;
+}
+const BlogDetailsPage = async ({ params }:IProps) => {
   const blogs = await getAllBlog();
-
+  const blogId = (await params).blogId
   const matchBlog: TBlog | undefined = blogs?.data.find(
-    (blog: TBlog) => blog._id === params.blogId
+    (blog: TBlog) => blog._id === blogId
   );
 
   if (!matchBlog) {

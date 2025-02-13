@@ -6,15 +6,22 @@ export const metadata: Metadata = {
   title: "Update Project",
   
 };
-const UpdateProject = async ({ params }: { params: { projectId: string } }) => {
+
+interface IProps {
+  params: Promise<{
+    projectId: string;
+  }>;
+}
+const UpdateProject = async ({ params }: IProps) => {
     
   // console.log(await params);
 
   const projects = await getAllProject();
   // console.log(blogs?.data);
 
+  const projectId= (await params).projectId
   const matchProject = projects?.data?.find(
-    (project: TProject) => project._id === params.projectId
+    (project: TProject) => project._id === projectId
   );
 
 //   console.log(matchProject);

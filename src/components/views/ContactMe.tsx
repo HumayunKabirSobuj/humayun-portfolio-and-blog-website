@@ -17,11 +17,11 @@ const ContactMe = async () => {
   return (
     <div>
       <div className="flex items-center justify-center  ">
-        <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block lg:pt-16 pt-8">
+        <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block ">
           Contact <span className="text-[#64B5F6]">Me</span>
         </h1>
       </div>
-      <div className=" mx-auto  text-white min-h-screen  px-5 py-5 flex justify-center items-center">
+      <div className=" mx-auto  text-white min-h-screen  px-5  flex justify-center items-center">
         <div className="flex flex-col gap-10 md:flex-row w-full item-center h-auto justify-center ">
           <div className="flex gap-7 flex-col w-full">
             <div

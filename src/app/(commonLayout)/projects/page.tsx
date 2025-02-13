@@ -14,7 +14,7 @@ const ProjectsPage = async () => {
 
   //   console.log(projects?.data);
   return (
-    <div>
+    <div className="container mx-auto">
       <div className="flex items-center justify-center lg:pb-16 pb-5">
         <h1 className="text-2xl md:text-3xl text-center text-white font-bold inline-block">
           All <span className="text-[#64B5F6]">Projects</span>

@@ -7,17 +7,20 @@ import { FaExternalLinkSquareAlt } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 export const metadata: Metadata = {
   title: "Project Details",
- 
 };
-const ProjectDetailsPage = async ({
-  params,
-}: {
-  params: { projectId: string };
-}) => {
+
+interface IProps {
+  params: Promise<{
+    projectId: string;
+  }>;
+}
+const ProjectDetailsPage = async ({ params }:IProps) => {
   const projects = await getAllProject();
 
+  const projectId = (await params).projectId
+
   const matchProjects: TProject | undefined = projects?.data.find(
-    (project: TProject) => project._id === params.projectId
+    (project: TProject) => project._id === projectId
   );
 
   if (!matchProjects) {

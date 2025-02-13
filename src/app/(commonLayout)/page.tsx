@@ -8,7 +8,7 @@ import RobotAnimation2 from "@/components/views/RobotAnimation2";
 
 export default async function Home() {
   return (
-    <div>
+    <div className="container mx-auto">
       <div className="flex flex-col lg:flex-row">
         <Banner />
         <RobotAnimation2 />

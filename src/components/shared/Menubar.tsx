@@ -19,8 +19,8 @@ const Menubar = ({ session }: { session: UserProps | null }) => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white p-4 fixed w-full top-0 z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className="bg-gray-900 text-white p-4 sticky w-full top-0 z-50 container mx-auto">
+      <div className=" flex justify-between items-center">
         <Link
           href="/"
           className="text-2xl font-bold hover:text-gray-300 transition-colors"

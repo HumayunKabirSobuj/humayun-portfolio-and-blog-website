@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   };
 const ContactPage = () => {
     return (
-        <div>
+        <div className="container mx-auto">
             <ContactMe/>
         </div>
     );

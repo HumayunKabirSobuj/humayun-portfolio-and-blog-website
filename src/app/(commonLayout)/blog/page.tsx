@@ -14,8 +14,8 @@ const BlogPage = async () => {
   const blogs = await getAllBlog();
   //   console.log(blogs.data);
   return (
-    <div>
-      <div className="flex items-center justify-center lg:pb-16 pb-5">
+    <div className="container mx-auto">
+      <div className="flex items-center justify-center lg:pb-16 pb-5 ">
         <h1 className="text-2xl md:text-3xl text-center text-white font-bold border-b-2 border-[#64B5F6] inline-block">
           All <span className="text-[#64B5F6]">Blogs</span>
         </h1>
