@@ -1,8 +1,8 @@
 "use client";
 import { addProject } from "@/app/utils/actions/projectManagement";
+import Loader from "@/components/shared/Loader";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -98,15 +98,7 @@ export default function AddBlog() {
 
   if (loading) {
     return (
-      <div className="w-[90%] mx-auto">
-        <Image
-          src="https://i.stack.imgur.com/hzk6C.gif"
-          width={500}
-          height={500}
-          alt="loading"
-          className="w-96 mx-auto"
-        />
-      </div>
+      <Loader/>
     );
   }
 

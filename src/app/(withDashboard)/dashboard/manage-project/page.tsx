@@ -4,6 +4,7 @@ import DeleteProjectButton from "@/components/shared/DeleteProjectButton";
 import { TBlog, TProject } from "@/types/types";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
+import Link from "next/link";
 
 const ManageProjectPage = async () => {
   const session = await getServerSession(authOptions);
@@ -63,9 +64,9 @@ const ManageProjectPage = async () => {
                     {row?.title}
                   </td>
                   <td className={`px-6 py-4 whitespace-nowrap text-sm flex items-center`}>
-                    <button className="bg-gray-700 text-white px-4 py-2 rounded-md">
+                  <Link href={`/dashboard/update-project/${row?._id}`} className="bg-gray-700 text-white px-4 py-2 rounded-md">
                       UPDATE
-                    </button>
+                    </Link>
                     <DeleteProjectButton id={row?._id}/>
                     
                   </td>

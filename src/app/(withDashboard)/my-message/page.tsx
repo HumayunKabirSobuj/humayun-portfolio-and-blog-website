@@ -1,9 +1,9 @@
 import { TMessage } from "@/types/types";
 import axios from "axios";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
 
 const MyMessagePage = async () => {
-
   const res = await axios.get("http://localhost:8080/api/message");
   const allMessage = await res.data;
   //   console.log(allMessage);
@@ -24,32 +24,43 @@ const MyMessagePage = async () => {
           My <span className="text-[#64B5F6]">sending message</span>
         </h1>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:px-10 px-5">
+      <div className="grid grid-cols-1 gap-5 md:px-10 px-5">
         {myMessages?.map((message: TMessage) => (
           <div
             key={message?._id}
-            className=" w-full bg-white bg-opacity-75 rounded-lg shadow-md overflow-hidden h-[250px]"
+            className=" w-full  shadow-md overflow-hidden h-auto"
           >
-            <div className="p-6">
-              <h3 className="text-xl font-semibold text-gray-800">
-               Your Name : {message?.name}
-              </h3>
-              <p className="text-gray-600">Subject : {message?.subject}</p>
-              <div className="mt-4 text-gray-500">
-                <p>
-                  <strong>Your Email : </strong> {message?.email}
-                </p>
-                <p>
-                  <strong>Your Phone : </strong> {message?.phone}
-                </p>
-              </div>
-              <div className="mt-4 text-gray-700">
-                <p>
-                  <strong>Message:</strong>
-                </p>
-                <p>{message?.message.slice(0,250)}</p>
-              </div>
-            </div>
+          
+            {/*  */}
+
+            
+
+            <div className="flex items-center space-x-3 bg-gray-800 text-white p-4 rounded-xl shadow-md w-full transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer">
+      {/* Profile/Icon */}
+      <div className="w-12 h-12 bg-gradient-to-br from-gray-400 to-gray-600 rounded-lg overflow-hidden flex items-center justify-center">
+        {session?.user?.image ? (
+          <Image
+            src={session.user.image}
+            alt="profile"
+            height={48}
+            width={48}
+            className="rounded-lg object-cover"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-gray-300 text-xs">
+            No Image
+          </div>
+        )}
+      </div>
+
+      {/* Content */}
+      <div className="flex-1">
+        <h3 className="text-sm font-semibold">{message?.subject || "No Subject"}</h3>
+        <p className="text-xs text-gray-300">{message?.message || "No Message Available"}</p>
+      </div>
+    </div>
+
+            {/*  */}
           </div>
         ))}
       </div>
